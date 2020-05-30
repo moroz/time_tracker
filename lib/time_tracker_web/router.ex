@@ -16,6 +16,8 @@ defmodule TimeTrackerWeb.Router do
   scope "/", TimeTrackerWeb do
     pipe_through :browser
 
+    get "/sign-in", SessionController, :new, as: :sign_in
+    post "/sign-in", SessionController, :create, as: :sign_in
     get "/", PageController, :index
   end
 

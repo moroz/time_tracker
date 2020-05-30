@@ -1,0 +1,9 @@
+.sign_in
+  = form_for @conn, Routes.sign_in_path(@conn, :create), fn f ->
+    = label f, :email, "Email:"
+    = text_input f, :email
+
+    = label f, :password, "Password:"
+    = password_input f, :password
+
+    = submit "Sign in"

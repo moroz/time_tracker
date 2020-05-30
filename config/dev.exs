@@ -61,7 +61,7 @@ config :time_tracker, TimeTrackerWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/time_tracker_web/(live|views)/.*(ex)$",
-      ~r"lib/time_tracker_web/templates/.*(eex)$"
+      ~r"lib/time_tracker_web/templates/.*(eex|slim|slime)$"
     ]
   ]
 

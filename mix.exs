@@ -46,6 +46,9 @@ defmodule TimeTracker.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
 
+      # Templating
+      {:phoenix_slime, "~> 0.13.1"},
+
       # Authentication
       {:comeonin, "~> 5.3"},
       {:argon2_elixir, "~> 2.3"}
