@@ -6,9 +6,11 @@ html lang="en"
     meta content="IE=edge" http-equiv="X-UA-Compatible" /
     meta content="width=device-width, initial-scale=1.0" name="viewport" /
     title TimeTracker · Phoenix Framework
+     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     link href="#{Routes.static_path(@conn, "/css/app.css")}" rel="stylesheet" /
     script defer="defer" src="#{Routes.static_path(@conn, "/js/app.js")}" type="text/javascript" 
   body
+    = render SharedView, "_navbar.html", assigns
     main.container role="main" 
       p.alert.alert-info role="alert" = get_flash(@conn, :info)
       p.alert.alert-danger role="alert" = get_flash(@conn, :error)

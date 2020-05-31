@@ -27,6 +27,8 @@ defmodule TimeTrackerWeb.Router do
 
     get "/sign-in", SessionController, :new, as: :sign_in
     post "/sign-in", SessionController, :create, as: :sign_in
+
+    get "/sign-out", SessionController, :delete
   end
 
   scope "/", TimeTrackerWeb do

@@ -1,0 +1,13 @@
+nav.navbar.is-info
+  .navbar-menu
+    .navbar-brand
+      = link "TimeTracker", to: "/", class: "navbar-item"
+    .navbar-end
+      = if @current_user do
+        .navbar-item
+          p= @current_user.display_name
+        .navbar-item
+          .field.is-grouped
+            p.control
+              = link "Sign out", to: "/sign-out", class: "button"
+

@@ -6,6 +6,12 @@ defmodule TimeTrackerWeb.SessionController do
     render(conn, "new.html")
   end
 
+  def delete(conn, _) do
+    conn
+    |> clear_session()
+    |> redirect(to: "/sign-in")
+  end
+
   def create(conn, %{"email" => email, "password" => password}) do
     case Users.authenticate_user_by_email_password(email, password) do
       {:ok, user} ->

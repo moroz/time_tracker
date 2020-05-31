@@ -5,13 +5,15 @@ defmodule TimeTrackerWeb.FetchUser do
   def init(default), do: default
 
   def call(conn, _) do
-    case get_session(conn, :user_id) do
-      nil ->
-        conn
+    user =
+      case get_session(conn, :user_id) do
+        id when is_binary(id) or is_integer(id) ->
+          Users.get_user_by_id!(id)
 
-      id when is_binary(id) or is_integer(id) ->
-        user = Users.get_user_by_id!(id)
-        assign(conn, :current_user, user)
-    end
+        _ ->
+          nil
+      end
+
+    assign(conn, :current_user, user)
   end
 end
