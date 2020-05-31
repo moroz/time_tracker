@@ -1,4 +1,4 @@
-defmodule TimeTrackerWeb.PageController do
+defmodule TimeTrackerWeb.DashboardController do
   use TimeTrackerWeb, :controller
 
   def index(conn, _params) do

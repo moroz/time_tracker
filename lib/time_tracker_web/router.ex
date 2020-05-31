@@ -33,7 +33,7 @@ defmodule TimeTrackerWeb.Router do
 
   scope "/", TimeTrackerWeb do
     pipe_through :restricted
-    get "/", PageController, :index
+    get "/", DashboardController, :index
   end
 
   # Other scopes may use custom stacks.

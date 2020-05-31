@@ -15,7 +15,7 @@ defmodule TimeTracker.Users do
 
   def create_user(params) do
     %User{}
-    |> User.changeset(params)
+    |> User.registration_changeset(params)
     |> Repo.insert()
   end
 

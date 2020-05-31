@@ -17,7 +17,7 @@ defmodule TimeTrackerWeb.UserController do
 
       {:error, changeset = %Ecto.Changeset{}} ->
         conn
-        |> put_flash(:alert, "Please review the errors in the from below and try again.")
+        |> put_flash(:alert, "Please review the errors in the form below and try again.")
         |> render("new.html", changeset: changeset)
     end
   end
