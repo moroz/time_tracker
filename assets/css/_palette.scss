@@ -1,0 +1,92 @@
+$light-body-text: #000;
+$light-emph-text: #333;
+$light-dimmed-text: #707070;
+
+$dark-body-text: transparentize(#fff, 0.4);
+$dark-emph-text: transparentize(#fff, 0.13);
+$dark-dimmed-text: transparentize(#fff, 0.62);
+
+$light-primary: rgb(0, 122, 255);
+$dark-primary: rgb(10, 132, 255);
+
+$light: (
+  "blue": rgb(0, 122, 255),
+  "body-bg": #fff,
+  "body-fg": #000,
+  "brown": rgb(162, 132, 94),
+  "dimmed-text": $light-dimmed-text,
+  "emph-text": $light-emph-text,
+  "error": rgb(255, 59, 48),
+  "green": rgb(40, 205, 64),
+  "grey": #eee,
+  "input-bg": #fff,
+  "input-border": rgb(206, 212, 218),
+  "input-placeholder": rgba(5, 5, 5, .3),
+  "light-border": rgb(206, 212, 218),
+  "link-color": #0070c9,
+  "link-visited": darken(rgb(175, 82, 222), 20%),
+  "main-bg": #f8f8f8,
+  "navbar-bg": $light-primary,
+  "orange": rgb(255, 149, 0),
+  "pink": rgb(255, 45, 85),
+  "placeholder": #aaa,
+  "primary": $light-primary,
+  "purple": rgb(175, 82, 222),
+  "red": rgb(255, 59, 48),
+  "surface-bg": #fff,
+  "surface-border": #eee,
+  "surface-hover-bg": #fff,
+  "tag-bg": #fafafa,
+  "tag-fg": #00579E,
+  "yellow": rgb(255, 204, 0),
+);
+
+$dark: (
+  "blue": rgb(10, 132, 255),
+  "body-bg": rgba(19,18,23,0.975),
+  "body-fg": #d9d7e0,
+  "brown": rgb(162, 132, 94),
+  "dimmed-text": $dark-dimmed-text,
+  "emph-text": $dark-emph-text,
+  "error": rgb(255, 69, 58),
+  "green": rgb(50, 215, 75),
+  "grey": #444,
+  "input-bg": rgb(58, 59, 60),
+  "input-border": #444,
+  "input-placeholder": $dark-dimmed-text,
+  "light-border": #444,
+  "link-color": $dark-primary,
+  "main-bg": #181818,
+  "navbar-bg": #242526,
+  "orange": rgb(255, 159, 10),
+  "pink": rgb(255, 55, 95),
+  "placeholder": $dark-dimmed-text,
+  "primary": $dark-primary,
+  "purple": rgb(191, 90, 242),
+  "red": rgb(255, 69, 58),
+  "surface-bg": #242526,
+  "surface-border": #242526,
+  "surface-fg": #9aa0a7,
+  "surface-hover-bg": #2c2c2c,
+  "tag-bg": #333,
+  "tag-fg": #fff,
+  "yellow": rgb(255, 214, 10),
+);
+
+html {
+  @each $name, $color in $light {
+    --#{$name}: #{$color};
+  }
+  @media (prefers-color-scheme: dark) {
+    @each $name, $color in $dark {
+      --#{$name}: #{$color};
+    }
+  }
+}
+
+@mixin dark {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+

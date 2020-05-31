@@ -1,0 +1,23 @@
+<h1>Show Entry</h1>
+
+<ul>
+
+  <li>
+    <strong>Start time:</strong>
+    <%= @entry.start_time %>
+  </li>
+
+  <li>
+    <strong>End time:</strong>
+    <%= @entry.end_time %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @entry.description %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.entry_path(@conn, :edit, @entry) %></span>
+<span><%= link "Back", to: Routes.entry_path(@conn, :index) %></span>

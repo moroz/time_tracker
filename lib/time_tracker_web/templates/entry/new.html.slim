@@ -1,0 +1,6 @@
+.card
+  .card-content
+    h1.title New entry
+    = render "form.html", Map.put(assigns, :action, Routes.entry_path(@conn, :create))
+
+    <span><%= link "Back", to: Routes.entry_path(@conn, :index) %></span>

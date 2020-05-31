@@ -1,0 +1,25 @@
+= form_for @changeset, @action, fn f ->
+  = if @changeset.action do
+    .notification.is-danger
+      p Oops, something went wrong! Please check the errors below.
+  .field
+    = label f, :date, class: "label"
+    = text_input f, :date, class: "input", type: "date"
+    = error_tag f, :date
+
+  .field
+    = label f, :start_time_raw, class: "label"
+    = text_input f, :start_time_raw, class: "input", type: "time", step: 15 * 60, min: "00:00"
+    = error_tag f, :start_time
+
+  .field
+    = label f, :end_time_raw, class: "label"
+    = text_input f, :end_time_raw, class: "input", type: "time", step: 15 * 60, min: "00:00"
+    = error_tag f, :end_time
+
+  .field
+    = label f, :description, class: "label"
+    = text_input f, :description, class: "input"
+    = error_tag f, :description
+  .field
+    = submit "Save", class: "button is-primary"
