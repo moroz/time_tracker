@@ -7,17 +7,30 @@ defmodule TimeTrackerWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug TimeTrackerWeb.FetchUser
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
+  pipeline :restricted do
+    plug :browser
+    plug TimeTrackerWeb.RestrictAccess
+  end
+
   scope "/", TimeTrackerWeb do
     pipe_through :browser
 
+    get "/sign-up", UserController, :new, as: :sign_up
+    post "/sign-up", UserController, :create, as: :sign_up
+
     get "/sign-in", SessionController, :new, as: :sign_in
     post "/sign-in", SessionController, :create, as: :sign_in
+  end
+
+  scope "/", TimeTrackerWeb do
+    pipe_through :restricted
     get "/", PageController, :index
   end
 

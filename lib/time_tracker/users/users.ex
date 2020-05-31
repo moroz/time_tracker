@@ -4,6 +4,8 @@ defmodule TimeTracker.Users do
 
   alias TimeTracker.Users.User
 
+  def get_user_by_id!(id), do: Repo.get!(User, id)
+
   def authenticate_user_by_email_password(email, password)
       when is_binary(email) and is_binary(password) do
     User
@@ -15,5 +17,9 @@ defmodule TimeTracker.Users do
     %User{}
     |> User.changeset(params)
     |> Repo.insert()
+  end
+
+  def change_user(user) do
+    User.changeset(user, %{})
   end
 end

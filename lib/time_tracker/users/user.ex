@@ -21,6 +21,8 @@ defmodule TimeTracker.Users.User do
     user
     |> cast(attrs, @cast)
     |> validate_required(@required)
+    |> validate_confirmation(:password)
+    |> unique_constraint(:email)
     |> put_pass_hash()
   end
 
