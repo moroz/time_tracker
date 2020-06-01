@@ -30,7 +30,7 @@ echo "===> Compiling"
 mix compile
 
 echo "===> Compiling static assets for admin"
-(cd apps/admin/assets && npm install && npm run deploy)
+(cd assets && yarn && yarn run deploy)
 
 echo "Building digest files"
 mix phx.digest
