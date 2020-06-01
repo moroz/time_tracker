@@ -43,5 +43,5 @@ cd "$BASEDIR"
 source "$HOME/.asdf/asdf.sh"
 
 mkdir -p "/usr/local/lib/$APP_NAME/current/var"
-sudo chown -R $APP_GROUP:$APP_GROUP "/usr/local/lib/$APP_NAME/current"
+sudo chown -R $DEPLOY_USER:$APP_GROUP "/usr/local/lib/$APP_NAME/current"
 sudo /bin/systemctl restart "$APP_NAME"
