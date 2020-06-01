@@ -25,7 +25,7 @@ RELEASE_TAR="_build/prod/$RELEASE_NAME-0.1.0.tar.gz"
 
 mkdir -p "$RELEASE_DIR"
 tar -C "$RELEASE_DIR" -xf "$RELEASE_TAR"
-chown -R ${DEPLOY_USER}:${APP_GROUP} "${RELEASE_DIR}"
+sudo chown -R ${DEPLOY_USER}:${APP_GROUP} "${RELEASE_DIR}"
 
 if [[ -L "$CURRENT_LINK" ]]; then
     rm "$CURRENT_LINK"
