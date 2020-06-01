@@ -34,7 +34,7 @@ ln -s "$RELEASE_DIR" "$CURRENT_LINK"
 echo "===> Setting file permissions for release executables"
 # Ensure that app OS user can use group permissions to execute files in release
 
-chown -R $DEPLOY_USER:$APP_GROUP "$CURRENT_LINK"
+sudo chown -R $DEPLOY_USER:$APP_GROUP "$CURRENT_LINK"
 find -H $CURRENT_LINK -executable -type f -exec chmod g+x {} \;
 
 BASEDIR="$BINDIR/.."
