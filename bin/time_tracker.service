@@ -1,0 +1,20 @@
+[Unit]
+Description=time_tracker service
+After=local-fs.target network.target
+
+[Service]
+Type=simple
+User=app
+Group=app
+WorkingDirectory=/usr/local/lib/time_tracker/current
+ExecStart=/usr/local/lib/time_tracker/current/bin/bazaar_umbrella start
+ExecStop=/usr/local/lib/time_tracker/current/bin/bazaar_umbrella stop
+Environment=LANG=en_US.utf8
+Environment=MIX_ENV=prod
+LimitNOFILE=65535
+UMask=0027
+SyslogIdentifier=time_tracker
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
