@@ -1,0 +1,22 @@
+.card
+  .card-content
+    = link "Back", to: Routes.entry_path(@conn, :index)
+    h1.title Entry
+
+    p 
+      strong Start time: 
+      |  #{format_datetime(@entry.start_time)}
+
+    p 
+      strong End time: 
+      |  #{format_datetime(@entry.end_time)}
+
+    p
+      strong Duration:
+      |  #{format_duration(@entry.start_time, @entry.end_time)}
+
+    label.label Description
+    p= @entry.description
+
+    .field.is-grouped
+      = link "Edit", to: Routes.entry_path(@conn, :edit, @entry), class: "button is-info"

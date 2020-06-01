@@ -4,10 +4,25 @@ defmodule TimeTrackerWeb.EntryController do
   alias TimeTracker.Entries
   alias TimeTracker.Entries.Entry
 
-  def index(conn, _params) do
-    entries = Entries.list_user_entries(conn.assigns.current_user)
-    total = Entries.user_total_time(conn.assigns.current_user)
-    render(conn, "index.html", entries: entries, total: total)
+  def index(conn, params) do
+    period = period_from_params(params)
+    user = conn.assigns.current_user
+    entries = Entries.list_user_entries_for_period(user, period)
+    total = Entries.user_total_time_for_period(user, period)
+    render(conn, "index.html", entries: entries, total: total, user: user, period: period)
+  end
+
+  defp period_from_params(%{"month" => month, "year" => year}) do
+    {
+      String.to_integer(year),
+      String.to_integer(month),
+      1
+    }
+    |> Timex.to_datetime()
+  end
+
+  defp period_from_params(_) do
+    Timex.local() |> Timex.beginning_of_month()
   end
 
   def new(conn, _params) do

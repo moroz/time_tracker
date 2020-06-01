@@ -14,3 +14,12 @@ import "../css/app.sass";
 //
 import "phoenix_html";
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".clickable_table").forEach((table) => {
+    table.querySelectorAll("[data-href]").forEach((row) => {
+      row.addEventListener("click", () => {
+        window.location.href = row.dataset.href;
+      });
+    });
+  });
+});

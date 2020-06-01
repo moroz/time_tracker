@@ -1,9 +1,9 @@
 .card
   .card-content
-    h1.title Listing Entries
+    h1.title #{@user.display_name}'s entries for #{format_month(@period)}
     = link "New Entry", to: Routes.entry_path(@conn, :new), class: "button is-primary"
 
-    table.table.is-fullwidth.is-hoverable
+    table.table.is-fullwidth.is-hoverable.clickable_table
       thead
         tr
           th.has-text-centered Date
@@ -14,7 +14,7 @@
 
       tbody
         = for entry <- @entries do
-          tr
+          tr data-href="#{Routes.entry_path(@conn, :show, entry)}"
             td.has-text-centered= format_date(entry.start_time)
             td.has-text-centered= format_time(entry.start_time)
             td.has-text-centered= format_time(entry.end_time)

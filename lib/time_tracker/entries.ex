@@ -38,6 +38,40 @@ defmodule TimeTracker.Entries do
     secs / 3600.0
   end
 
+  def list_user_entries_for_period(%User{id: id}, beginning_of_month) do
+    from(e in Entry, where: e.user_id == ^id)
+    |> order_by([e], desc: e.start_time)
+    |> where(
+      [e],
+      fragment(
+        "? between ? and ?",
+        e.start_time,
+        ^beginning_of_month,
+        ^Timex.end_of_month(beginning_of_month)
+      )
+    )
+    |> Repo.all()
+  end
+
+  def user_total_time_for_period(%User{id: id}, beginning_of_month) do
+    secs =
+      from(e in Entry, where: e.user_id == ^id)
+      |> where(
+        [e],
+        fragment(
+          "? between ? and ?",
+          e.start_time,
+          ^beginning_of_month,
+          ^Timex.end_of_month(beginning_of_month)
+        )
+      )
+      |> select([e], sum(e.end_time - e.start_time))
+      |> Repo.one()
+      |> Map.get(:secs)
+
+    secs / 3600.0
+  end
+
   @doc """
   Gets a single entry.
 
