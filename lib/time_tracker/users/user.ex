@@ -21,6 +21,7 @@ defmodule TimeTracker.Users.User do
     user
     |> cast(attrs, @cast)
     |> validate_required(@required)
+    |> EmailTldValidator.Ecto.validate_email()
     |> validate_confirmation(:password)
     |> unique_constraint(:email)
     |> put_pass_hash()
@@ -29,6 +30,11 @@ defmodule TimeTracker.Users.User do
   def registration_changeset(user, attrs) do
     changeset(user, attrs)
     |> validate_required([:password, :password_confirmation])
+    |> validate_format(
+      :password,
+      ~r/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{10,}$/,
+      message: "Password too weak."
+    )
   end
 
   defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do

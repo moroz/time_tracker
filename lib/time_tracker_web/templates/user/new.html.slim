@@ -16,6 +16,7 @@
         = label f, :password, "Password:", class: "label"
         = password_input f, :password, class: "input"
         = error_tag f, :password
+        p.help Password should be 10-128 characters long and contain at least one capital letter, one small letter, one special character, and one number. Using a password manager is recommended.
 
       .field
         = label f, :password_confirmation, "Confirm password:", class: "label"

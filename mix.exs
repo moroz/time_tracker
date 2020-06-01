@@ -47,6 +47,7 @@ defmodule TimeTracker.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:timex, "~> 3.6"},
+      {:email_tld_validator, ">= 0.0.0"},
 
       # Templating
       {:phoenix_slime, "~> 0.13.1"},
