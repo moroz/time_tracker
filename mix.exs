@@ -79,22 +79,8 @@ defmodule TimeTracker.MixProject do
         applications: [
           time_tracker: :permanent
         ],
-        steps: [:assemble, &make_tar/1]
+        steps: [:assemble, :tar]
       ]
     ]
-  end
-
-  defp make_tar(%Mix.Release{} = rel) do
-    tar_filename = "#{rel.name}.tar.gz"
-    out_path = Path.join(rel.path, tar_filename)
-
-    dirs =
-      ["bin", "lib", Path.join("releases", rel.version), "erts-#{rel.erts_version}"] ++
-        [Path.join("releases", "COOKIE"), Path.join("releases", "start_erl.data")]
-
-    files = Enum.map(dirs, &{String.to_charlist(&1), String.to_charlist(Path.join(rel.path, &1))})
-    :ok = :erl_tar.create(String.to_charlist(out_path), files, [:dereference, :compressed])
-    :ok = File.rename(out_path, Path.join(rel.version_path, tar_filename))
-    rel
   end
 end
