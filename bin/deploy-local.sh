@@ -21,7 +21,7 @@ BINDIR=$(dirname "$0")
 cd "$BINDIR"; BINDIR="$PWD"; cd "$CURDIR"
 TIMESTAMP=$(date +%Y%m%d%H%M%S)
 RELEASE_DIR="${DESTDIR}releases/${TIMESTAMP}"
-RELEASE_TAR="_build/prod/rel/$RELEASE_NAME/releases/0.1.0/$RELEASE_NAME.tar.gz"
+RELEASE_TAR="_build/prod/$RELEASE_NAME-0.1.0.tar.gz"
 
 mkdir -p "$RELEASE_DIR"
 tar -C "$RELEASE_DIR" -xf "$RELEASE_TAR"
