@@ -39,4 +39,4 @@ chmod +x bin/*
 
 echo "===> Building release"
 # Elixir 1.9+
-mix release --overwrite
+mix release --overwrite time_tracker
