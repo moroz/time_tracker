@@ -5,8 +5,9 @@ defmodule TimeTrackerWeb.EntryController do
   alias TimeTracker.Entries.Entry
 
   def index(conn, _params) do
-    entries = Entries.list_entries()
-    render(conn, "index.html", entries: entries)
+    entries = Entries.list_user_entries(conn.assigns.current_user)
+    total = Entries.user_total_time(conn.assigns.current_user)
+    render(conn, "index.html", entries: entries, total: total)
   end
 
   def new(conn, _params) do
@@ -15,11 +16,11 @@ defmodule TimeTrackerWeb.EntryController do
   end
 
   def create(conn, %{"entry" => entry_params}) do
-    case Entries.create_entry(entry_params) do
-      {:ok, entry} ->
+    case Entries.create_user_entry(conn.assigns.current_user, entry_params) do
+      {:ok, _entry} ->
         conn
         |> put_flash(:info, "Entry created successfully.")
-        |> redirect(to: Routes.entry_path(conn, :show, entry))
+        |> redirect(to: Routes.entry_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

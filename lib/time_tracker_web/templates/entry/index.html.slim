@@ -1,0 +1,30 @@
+.card
+  .card-content
+    h1.title Listing Entries
+    = link "New Entry", to: Routes.entry_path(@conn, :new), class: "button is-primary"
+
+    table.table.is-fullwidth.is-hoverable
+      thead
+        tr
+          th.has-text-centered Date
+          th.has-text-centered Start
+          th.has-text-centered End
+          th.has-text-centered Duration
+          th Description
+
+      tbody
+        = for entry <- @entries do
+          tr
+            td.has-text-centered= format_date(entry.start_time)
+            td.has-text-centered= format_time(entry.start_time)
+            td.has-text-centered= format_time(entry.end_time)
+            td.has-text-centered= format_duration(entry.start_time, entry.end_time)
+            td= entry.description
+
+      
+      tfoot
+        tr
+          th colspan="2"
+          th.has-text-centered Total:
+          th.has-text-centered #{@total}h
+          th

@@ -14,6 +14,8 @@ defmodule TimeTracker.Entries.Entry do
     field :start_time_raw, :time, virtual: true
     field :end_time_raw, :time, virtual: true
 
+    belongs_to :user, TimeTracker.Users.User
+
     timestamps()
   end
 

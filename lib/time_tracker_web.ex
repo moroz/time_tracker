@@ -68,6 +68,7 @@ defmodule TimeTrackerWeb do
 
       import TimeTrackerWeb.ErrorHelpers
       import TimeTrackerWeb.Gettext
+      import TimeTrackerWeb.TimeHelpers
       alias TimeTrackerWeb.Router.Helpers, as: Routes
     end
   end

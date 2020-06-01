@@ -1,5 +1,8 @@
 .card
   .card-content
-    p.title Welcome back, #{@current_user.display_name}!
+    h1.title Welcome back, #{@current_user.display_name}!
 
+    p What would you like to do?
 
+    p= link "Add a new time entry", to: Routes.entry_path(@conn, :new)
+    p= link "View work history", to: Routes.entry_path(@conn, :index)

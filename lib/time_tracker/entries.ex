@@ -5,6 +5,7 @@ defmodule TimeTracker.Entries do
 
   import Ecto.Query, warn: false
   alias TimeTracker.Repo
+  alias TimeTracker.Users.User
 
   alias TimeTracker.Entries.Entry
 
@@ -19,6 +20,22 @@ defmodule TimeTracker.Entries do
   """
   def list_entries do
     Repo.all(Entry)
+  end
+
+  def list_user_entries(%User{id: user_id}) do
+    from(e in Entry, where: e.user_id == ^user_id)
+    |> order_by([e], desc: e.start_time)
+    |> Repo.all()
+  end
+
+  def user_total_time(%User{id: user_id}) do
+    secs =
+      from(e in Entry, where: e.user_id == ^user_id)
+      |> select([e], sum(e.end_time - e.start_time))
+      |> Repo.one()
+      |> Map.get(:secs)
+
+    secs / 3600.0
   end
 
   @doc """
@@ -51,6 +68,12 @@ defmodule TimeTracker.Entries do
   """
   def create_entry(attrs \\ %{}) do
     %Entry{}
+    |> Entry.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_user_entry(%User{} = user, attrs \\ %{}) do
+    %Entry{user_id: user.id}
     |> Entry.changeset(attrs)
     |> Repo.insert()
   end
